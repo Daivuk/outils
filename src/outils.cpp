@@ -2227,17 +2227,17 @@ namespace outils
 #endif
     }
 
-    void logInfo(LogSeverity logSeverity, const std::string& message)
+    void logInfo(const std::string& message)
     {
         log(LogSeverity::Info, message);
     }
 
-    void logWarning(LogSeverity logSeverity, const std::string& message)
+    void logWarning(const std::string& message)
     {
         log(LogSeverity::Warning, message);
     }
 
-    void logError(LogSeverity logSeverity, const std::string& message)
+    void logError(const std::string& message)
     {
         log(LogSeverity::Error, message);
     }

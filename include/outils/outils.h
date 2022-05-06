@@ -214,9 +214,33 @@ namespace outils
     enum class LogSeverity { Info, Warning, Error };
 
     void log(LogSeverity logSeverity, const std::string& message);
-    void logInfo(LogSeverity logSeverity, const std::string& message);
-    void logWarning(LogSeverity logSeverity, const std::string& message);
-    void logError(LogSeverity logSeverity, const std::string& message);
+    void logInfo(const std::string& message);
+    void logWarning(const std::string& message);
+    void logError(const std::string& message);
 }
+
+#if defined(OUTILS_NO_ASSERTS)
+#define OUTILS_FATAL(_msg)
+#define OUTILS_ASSERT(_cond, _msg)
+#else
+#if defined(_DEBUG)
+#include <cassert>
+#define OUTILS_FATAL(_msg) assert(false && _msg)
+#define OUTILS_ASSERT(_cond, _msg) assert((_cond) && _msg)
+#else
+#include <tinyfiledialogs/tinyfiledialogs.h>
+#define OUTILS_FATAL(_msg) \
+{ \
+    tinyfd_messageBox("ASSERT", _msg, "ok", "error", 1); \
+    exit(1); \
+}
+#define OUTILS_ASSERT(_cond, _msg) \
+if (!(_cond)) \
+{ \
+    tinyfd_messageBox("ASSERT", _msg, "ok", "error", 1); \
+    exit(1); \
+}
+#endif
+#endif
 
 #endif /* OUTILS_H_INCLUDED */
