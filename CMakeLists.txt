@@ -16,6 +16,9 @@ add_library(${PROJECT_NAME}
 )
 target_include_directories(${PROJECT_NAME} PUBLIC ./include ./src)
 
+# Disable warnings on some specific thirdparty files
+set_source_files_properties("./src/tinyfiledialogs/tinyfiledialogs.c" COMPILE_FLAGS "/wd4267 /wd4244")
+
 if (OUTILS_BUILD_TESTS)
     add_subdirectory(./tests)
 endif()
