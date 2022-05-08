@@ -13,6 +13,9 @@ add_library(${PROJECT_NAME}
     ./src/outils.cpp
     ./src/tinyfiledialogs/tinyfiledialogs.c
     ./include/outils/outils.h
+    ./src/json/json_reader.cpp
+    ./src/json/json_value.cpp
+    ./src/json/json_writer.cpp
 )
 target_include_directories(${PROJECT_NAME} PUBLIC ./include ./src)
 
