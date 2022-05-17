@@ -1512,6 +1512,13 @@ namespace outils
         return path.substr(pos + 1);
     }
 
+    std::string getPathWithoutExtension(const std::string& path)
+    {
+        auto pos = path.find_last_of('.');
+        if (pos == std::string::npos) return path;
+        return path.substr(0, pos);
+    }
+
     std::string getFilenameWithoutExtension(const std::string& path)
     {
         auto filename = getFilename(path);
