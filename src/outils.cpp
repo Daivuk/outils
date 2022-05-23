@@ -1413,7 +1413,7 @@ namespace outils
         return std::move(ret);
     }
 
-    std::string findFile(const std::string& name, const std::string& lookIn, bool deepSearch)
+    std::string findFile(const std::string& name, const std::string& lookIn, bool deepSearch, bool ignoreCase)
     {
         DIR* dir;
         struct dirent* ent;
@@ -1430,16 +1430,28 @@ namespace outils
                     continue;
                 }
 
-                if (name == ent->d_name)
+                if (ignoreCase)
                 {
-                    auto ret = lookIn + "/" + ent->d_name;
-                    closedir(dir);
-                    return ret;
+                    if (stricmp(name.c_str(), ent->d_name) == 0)
+                    {
+                        auto ret = lookIn + "/" + ent->d_name;
+                        closedir(dir);
+                        return ret;
+                    }
+                }
+                else
+                {
+                    if (name == ent->d_name)
+                    {
+                        auto ret = lookIn + "/" + ent->d_name;
+                        closedir(dir);
+                        return ret;
+                    }
                 }
 
                 if (ent->d_type & DT_DIR && deepSearch)
                 {
-                    auto ret = findFile(name, lookIn + "/" + ent->d_name);
+                    auto ret = findFile(name, lookIn + "/" + ent->d_name, deepSearch, ignoreCase);
                     if (!ret.empty())
                     {
                         closedir(dir);

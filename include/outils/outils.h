@@ -42,7 +42,7 @@ namespace outils
     //--- Files
     //--------------------------------------
 
-    std::string findFile(const std::string& name, const std::string& lookIn = ".", bool deepSearch = true);
+    std::string findFile(const std::string& name, const std::string& lookIn = ".", bool deepSearch = true, bool ignoreCase = false);
     std::vector<std::string> findAllFiles(const std::string& lookIn = ".", const std::string& extension = "*", bool deepSearch = true);
     std::string getPath(const std::string& filename);
     std::string getPathWithoutExtension(const std::string& filename);
