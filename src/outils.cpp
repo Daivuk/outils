@@ -2551,6 +2551,14 @@ namespace outils
         return ret;
     }
 
+    Json::Value serializeStringArray(const std::vector<std::string> &val)
+    {
+        Json::Value ret(Json::arrayValue);
+        for (const auto &str : val)
+            ret.append(str);
+        return ret;
+    }
+
     int8_t deserializeInt8(const Json::Value &json, int8_t in_default)
     {
         if (!json.isInt()) return in_default;
@@ -2748,5 +2756,26 @@ namespace outils
             }
             out[i] = json[i].asFloat();
         }
+    }
+
+    std::vector<std::string> deserializeStringArray(const Json::Value &json, const std::vector<std::string> &in_default)
+    {
+        if (!json.isArray())
+        {
+            return in_default;
+        }
+        std::vector<std::string> ret;
+        for (const auto &valJson : json)
+        {
+            if (valJson.isString())
+            {
+                ret.push_back(valJson.asString());
+            }
+            else
+            {
+                ret.push_back("");
+            }
+        }
+        return ret;
     }
 }

@@ -141,6 +141,7 @@ namespace outils
     Json::Value serializeInt2(const int *val);
     Json::Value serializeInt4(const int *val);
     Json::Value serializeMatrix(const float *val);
+    Json::Value serializeStringArray(const std::vector<std::string> &val);
 
     int8_t deserializeInt8(const Json::Value &json, int8_t in_default = 0);
     uint8_t deserializeUInt8(const Json::Value &json, uint8_t in_default = 0);
@@ -161,6 +162,7 @@ namespace outils
     void deserializeInt2(int* out, const Json::Value &json, const int *in_default = nullptr);
     void deserializeInt3(int* out, const Json::Value &json, const int *in_default = nullptr);
     void deserializeMatrix(float* out, const Json::Value &json, const float *in_default = nullptr); // Null = identity
+    std::vector<std::string> deserializeStringArray(const Json::Value &json, const std::vector<std::string> &in_default = {});
 
     //--------------------------------------
     //--- Maths
