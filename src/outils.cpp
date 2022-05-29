@@ -2433,10 +2433,16 @@ namespace outils
             outils::logError("Failed to save file: " + filename);
             return false;
         }
-        file << json;
+
+        Json::StyledWriter styledWriter;
+
+        auto str = styledWriter.write(json);
+        file << str;
         file.close();
+
         return true;
     }
+
 
     Json::Value serializeInt8(int8_t val)
     {
