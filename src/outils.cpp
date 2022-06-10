@@ -1546,6 +1546,13 @@ namespace outils
         return toUpper(filename.substr(pos + 1));
     }
 
+    std::string getParentFolderName(const std::string& filename)
+    {
+        auto path = getPath(filename);
+        if (path.empty()) return "";
+        return path.substr(0, path.find_last_of("\\/"));
+    }
+
     std::string getSavePath(const std::string& appName)
     {
 #if defined(WIN32)

@@ -49,6 +49,7 @@ namespace outils
     std::string getFilename(const std::string& path);
     std::string getFilenameWithoutExtension(const std::string& path);
     std::string getExtension(const std::string& filename);
+    std::string getParentFolderName(const std::string& filename);
     // On Windows, this returns the Roaming App Data path. On other platforms, it returns local directory "./"
     std::string getSavePath(const std::string& appName);
     std::string makeRelativePath(const std::string& path, const std::string& relativeTo);
