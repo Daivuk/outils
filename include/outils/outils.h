@@ -155,13 +155,12 @@ namespace outils
     float deserializeFloat(const Json::Value &json, float in_default = 0.0f);
     double deserializeDouble(const Json::Value &json, double in_default = 0.0);
     bool deserializeBool(const Json::Value &json, bool in_default = false);
-    std::string deserializeString(const Json::Value &json, const char *in_default = "");
     std::string deserializeString(const Json::Value &json, const std::string &in_default = "");
     void deserializeFloat2(float* out, const Json::Value &json, const float *in_default = nullptr);
     void deserializeFloat3(float* out, const Json::Value &json, const float *in_default = nullptr);
     void deserializeFloat4(float* out, const Json::Value &json, const float *in_default = nullptr);
     void deserializeInt2(int* out, const Json::Value &json, const int *in_default = nullptr);
-    void deserializeInt3(int* out, const Json::Value &json, const int *in_default = nullptr);
+    void deserializeInt4(int* out, const Json::Value &json, const int *in_default = nullptr);
     void deserializeMatrix(float* out, const Json::Value &json, const float *in_default = nullptr); // Null = identity
     std::vector<std::string> deserializeStringArray(const Json::Value &json, const std::vector<std::string> &in_default = {});
 

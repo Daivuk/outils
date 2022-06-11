@@ -2638,12 +2638,6 @@ namespace outils
         return json.asBool();
     }
 
-    std::string deserializeString(const Json::Value &json, const char *in_default)
-    {
-        if (!json.isString()) return in_default;
-        return json.asString();
-    }
-
     std::string deserializeString(const Json::Value &json, const std::string &in_default)
     {
         if (!json.isString()) return in_default;
@@ -2733,12 +2727,12 @@ namespace outils
         }
     }
 
-    void deserializeInt3(int* out, const Json::Value &json, const int *in_default)
+    void deserializeInt4(int* out, const Json::Value &json, const int *in_default)
     {
         if (in_default == nullptr) in_default = DEFAULT_INTS;
-        if (!json.isArray() || json.size() != 3)
+        if (!json.isArray() || json.size() != 4)
         {
-            memcpy(out, in_default, sizeof(int) * 3);
+            memcpy(out, in_default, sizeof(int) * 4);
             return;
         }
         for (int i = 0; i < 4; ++i)
