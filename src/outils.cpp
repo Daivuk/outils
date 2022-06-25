@@ -1808,7 +1808,14 @@ namespace outils
     void showInExplorer(const std::string& path)
     {
 #if defined(WIN32)
-        system(("explorer " + path).c_str());
+        std::string pathReverseSlash = path;
+        std::replace(pathReverseSlash.begin(), pathReverseSlash.end(), '/', '\\');
+        ITEMIDLIST *pidl = ILCreateFromPath(pathReverseSlash.c_str());
+        if (pidl)
+        {
+            SHOpenFolderAndSelectItems(pidl, 0, 0, 0);
+            ILFree(pidl);
+        }
 #elif defined(__APPLE__)
         system(("open " + path).c_str());
 #else
